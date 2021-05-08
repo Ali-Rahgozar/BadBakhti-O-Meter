@@ -3,6 +3,8 @@ package com.rahgozar.badbakhti_o_meter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
 
@@ -43,6 +47,31 @@ public class MainActivity extends AppCompatActivity {
         SHOWER.setText(finalDateDayFormat+" DAYS until Konkour \n"+String.valueOf(date/7)+" WEEKS" +" and "+ date%7+" days "+" until Konkour");
 
     }
+    public void showDatabaseContent(View view){
+        /*try {
+    MyDatabaseOpenHelper sqLiteDatabase = WritingActivity.getSqLiteDatabase();
+    SQLiteDatabase myDAtabase = sqLiteDatabase.getReadableDatabase();
+
+    Cursor cursor = myDAtabase.rawQuery("SELECT * FROM tb_name", null);
+            cursor.moveToFirst();
+            cursor.moveToNext();
+    String text = cursor.getString(cursor.getColumnIndex("Message"));
+    Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+}catch (Exception e){System.out.println(e.getMessage());}*/
+        Intent intent=new Intent(MainActivity.this,Outpot.class);
+        startActivity(intent);
+
+
+
+    }
+    public void launcher(View view){
+
+      Intent intent=new Intent(MainActivity.this,WritingActivity.class);
+      startActivity(intent);
+
+    }
+
+
 
 
 }
