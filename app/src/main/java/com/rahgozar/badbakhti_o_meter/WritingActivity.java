@@ -14,7 +14,7 @@ public static SQLiteDatabase sqLiteDatabase;
    public static MyDatabaseOpenHelper myDatabaseOpenHelper;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+   public  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writing);
          myDatabaseOpenHelper=new MyDatabaseOpenHelper(this);

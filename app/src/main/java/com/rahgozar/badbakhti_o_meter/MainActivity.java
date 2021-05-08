@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     }
     public void DayCounter(View view){
         Calendar calendar = Calendar.getInstance();
@@ -48,16 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void showDatabaseContent(View view){
-        /*try {
-    MyDatabaseOpenHelper sqLiteDatabase = WritingActivity.getSqLiteDatabase();
-    SQLiteDatabase myDAtabase = sqLiteDatabase.getReadableDatabase();
 
-    Cursor cursor = myDAtabase.rawQuery("SELECT * FROM tb_name", null);
-            cursor.moveToFirst();
-            cursor.moveToNext();
-    String text = cursor.getString(cursor.getColumnIndex("Message"));
-    Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-}catch (Exception e){System.out.println(e.getMessage());}*/
         Intent intent=new Intent(MainActivity.this,Outpot.class);
         startActivity(intent);
 
