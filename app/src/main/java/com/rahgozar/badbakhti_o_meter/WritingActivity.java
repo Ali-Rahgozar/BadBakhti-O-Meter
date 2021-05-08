@@ -8,34 +8,39 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class WritingActivity extends AppCompatActivity {
-public static SQLiteDatabase sqLiteDatabase;
-   public static MyDatabaseOpenHelper myDatabaseOpenHelper;
+
 
     @Override
    public  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writing);
-         myDatabaseOpenHelper=new MyDatabaseOpenHelper(this);
-        sqLiteDatabase=myDatabaseOpenHelper.getWritableDatabase();
+        setTitle("Add new Item");
+
 
     }
     public void commit(View vieew){
         EditText editText=(EditText)findViewById(R.id.EditText);
         String finalText=editText.getText().toString();
         ContentValues content=new ContentValues();
-        content.put("Message",finalText);
-        sqLiteDatabase.insert("tb_name",null,content);
+        MyDatabaseOpenHelper myDatabaseOpenHelper=MainActivity.myDatabaseOpenHelper;
+        SQLiteDatabase sqLiteDatabase=myDatabaseOpenHelper.getWritableDatabase();
+       if(!finalText.isEmpty()) {
+            content.put("Message", finalText);
+            sqLiteDatabase.insert("tb_name", null, content);
+           Toast.makeText(this, "Your message has been saved to your List", Toast.LENGTH_SHORT).show();
+
+       }else{
+           Toast.makeText(this, "If you don't write anything, nothing would be added to the List", Toast.LENGTH_SHORT).show();
+       }
+        Intent intent=new Intent(WritingActivity.this,MainActivity.class);
+        startActivity(intent);
 
 
 
 
-
-    }
-    public static MyDatabaseOpenHelper getSqLiteDatabase(){
-
-      return myDatabaseOpenHelper;
 
     }
 

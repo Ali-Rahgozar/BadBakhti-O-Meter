@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#090E2B"
     tools:context=".WritingActivity">
 
     <EditText
@@ -11,8 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Enter your Tetx here..."
         android:inputType="textPersonName"
-        android:text="Name"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,8 +25,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#039BE5"
         android:onClick="commit"
-        android:text="Button"
+        android:text="Add to the List"
+        app:icon="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

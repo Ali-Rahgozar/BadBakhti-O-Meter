@@ -26,12 +26,14 @@ public class Outpot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outpot);
         //
+        setTitle("List");
 
         //
         ListView listView=(ListView)findViewById(R.id.ListView);
         ArrayList<String>arrayList=new ArrayList<String>();
-        MyDatabaseOpenHelper sqLiteDatabase = WritingActivity.getSqLiteDatabase();
+        MyDatabaseOpenHelper sqLiteDatabase =MainActivity.myDatabaseOpenHelper;
         SQLiteDatabase  myDAtabase = sqLiteDatabase.getReadableDatabase();
+
         Cursor cursor=new Cursor() {
             @Override
             public int getCount() {
@@ -249,18 +251,22 @@ public class Outpot extends AppCompatActivity {
 
            cursor.moveToNext(); }
         }catch (Exception e){System.out.println(e.getMessage());}
+
         cursor.moveToFirst();
         ArrayList<String>newArray=arrayList;
         ArrayAdapter<String>arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,newArray);
         listView.setAdapter(arrayAdapter);
+        if(arrayList.isEmpty()){
+            Toast.makeText(this, "You don't have anything in your List", Toast.LENGTH_SHORT).show();
+        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 arrayAdapter.notifyDataSetChanged();
 String wanted=newArray.get(position);
-Toast.makeText(Outpot.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
 myDAtabase.delete(" tb_name","Message = ?",new String[]{wanted});
 newArray.remove(position);
+                Toast.makeText(Outpot.this, "Selected item has been successfully deleted--row number: "+String.valueOf(position+1), Toast.LENGTH_SHORT).show();
 
           }
         });

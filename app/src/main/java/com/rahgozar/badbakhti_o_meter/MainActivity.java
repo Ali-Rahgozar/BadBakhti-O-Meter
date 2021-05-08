@@ -15,14 +15,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 public class MainActivity extends AppCompatActivity {
-
+    public static SQLiteDatabase sqLiteDatabase;
+    public static MyDatabaseOpenHelper myDatabaseOpenHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setTitle("Home");
+        myDatabaseOpenHelper=new MyDatabaseOpenHelper(this);
+        sqLiteDatabase=myDatabaseOpenHelper.getWritableDatabase();
 
 
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         TextView SHOWER=(TextView)findViewById(R.id.konkourDayShower);
         int date=Integer.parseInt(finalDateDayFormat);
 
-        SHOWER.setText(finalDateDayFormat+" DAYS until Konkour \n"+String.valueOf(date/7)+" WEEKS" +" and "+ date%7+" days "+" until Konkour");
+        SHOWER.setText(finalDateDayFormat+" DAYS until Konkour \n\n"+String.valueOf(date/7)+" WEEKS" +" and "+ date%7+" days "+" until Konkour");
 
     }
     public void showDatabaseContent(View view){
