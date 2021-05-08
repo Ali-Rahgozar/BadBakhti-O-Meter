@@ -2,6 +2,7 @@ package com.rahgozar.badbakhti_o_meter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,4 +43,6 @@ public class MainActivity extends AppCompatActivity {
         SHOWER.setText(finalDateDayFormat+" DAYS until Konkour \n"+String.valueOf(date/7)+" WEEKS" +" and "+ date%7+" days "+" until Konkour");
 
     }
+
+
 }
