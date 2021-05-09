@@ -17,7 +17,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.i("Database CREATED ","DATABASE IS CREATED");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS tb_name ('Message' text) ");
+        db.execSQL("CREATE TABLE IF NOT EXISTS tb_name ('Message' text , 'Date' text ) ");
 
     }
 

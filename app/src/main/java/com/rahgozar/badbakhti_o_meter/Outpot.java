@@ -259,14 +259,23 @@ public class Outpot extends AppCompatActivity {
         if(arrayList.isEmpty()){
             Toast.makeText(this, "You don't have anything in your List", Toast.LENGTH_SHORT).show();
         }
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-arrayAdapter.notifyDataSetChanged();
+
 String wanted=newArray.get(position);
-myDAtabase.delete(" tb_name","Message = ?",new String[]{wanted});
-newArray.remove(position);
-                Toast.makeText(Outpot.this, "Selected item has been successfully deleted--row number: "+String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+
+                    Cursor c = myDAtabase.rawQuery("SELECT * FROM tb_name WHERE Message =?", new String[]{wanted});
+                    c.moveToFirst();
+                    String Current_Date = c.getString(c.getColumnIndex("Date"));
+//Toasting date
+
+ myDAtabase.delete(" tb_name","Message = ?",new String[]{wanted});
+ newArray.remove(position);
+                arrayAdapter.notifyDataSetChanged();
+
+                Toast.makeText(Outpot.this, "Selected item has been successfully deleted--DATE: "+String.valueOf(Current_Date), Toast.LENGTH_SHORT).show();
 
           }
         });

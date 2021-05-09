@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class WritingActivity extends AppCompatActivity {
 
 
@@ -28,8 +31,14 @@ public class WritingActivity extends AppCompatActivity {
         MyDatabaseOpenHelper myDatabaseOpenHelper=MainActivity.myDatabaseOpenHelper;
         SQLiteDatabase sqLiteDatabase=myDatabaseOpenHelper.getWritableDatabase();
        if(!finalText.isEmpty()) {
+           //Date
+           Calendar calendar = Calendar.getInstance();
+           SimpleDateFormat simpledateformatYear = new SimpleDateFormat("yyyy.MM.dd");
+           String Current_Date=simpledateformatYear.format(calendar.getTime());
+           //Date
             content.put("Message", finalText);
-            sqLiteDatabase.insert("tb_name", null, content);
+           content.put("Date", Current_Date);
+           sqLiteDatabase.insert("tb_name", null, content);
            Toast.makeText(this, "Your message has been saved to your List", Toast.LENGTH_SHORT).show();
 
        }else{
