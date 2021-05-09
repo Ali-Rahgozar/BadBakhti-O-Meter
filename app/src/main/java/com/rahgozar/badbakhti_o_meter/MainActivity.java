@@ -68,4 +68,4 @@ KONKOUR_DAY_SHOWER.animate().alpha(0f);
 
 
 
-}
+}//End of class
