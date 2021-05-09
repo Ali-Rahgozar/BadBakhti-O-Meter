@@ -18,6 +18,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
     public static SQLiteDatabase sqLiteDatabase;
     public static MyDatabaseOpenHelper myDatabaseOpenHelper;
+    public TextView KONKOUR_DAY_SHOWER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Home");
         myDatabaseOpenHelper=new MyDatabaseOpenHelper(this);
         sqLiteDatabase=myDatabaseOpenHelper.getWritableDatabase();
-
+KONKOUR_DAY_SHOWER=(TextView)findViewById(R.id.konkourDayShower);
+KONKOUR_DAY_SHOWER.animate().alpha(0f);
 
 
 
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         int date=Integer.parseInt(finalDateDayFormat);
 
         SHOWER.setText(finalDateDayFormat+" DAYS until Konkour \n\n"+String.valueOf(date/7)+" WEEKS" +" and "+ date%7+" days "+" until Konkour");
-
+    SHOWER.animate().alpha(1f).setDuration(1000);
     }
     public void showDatabaseContent(View view){
 
