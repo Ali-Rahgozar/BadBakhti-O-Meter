@@ -1,35 +1,77 @@
 package com.rahgozar.badbakhti_o_meter;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
+    ArrayList<CharSequence> arrayListCollection;
+    ArrayAdapter<CharSequence> adapter;
+    EditText txt;
+    public static int onKonkourTextClickCounter;
     public static SQLiteDatabase sqLiteDatabase;
     public static MyDatabaseOpenHelper myDatabaseOpenHelper;
+    public static SQLiteDatabase secretSqLiteDatabase;
+    SecretDatabaseOpenHelper secretDatabaseOpenHelper;
     public TextView KONKOUR_DAY_SHOWER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        onKonkourTextClickCounter=0;
         setTitle("Home");
         myDatabaseOpenHelper=new MyDatabaseOpenHelper(this);
         sqLiteDatabase=myDatabaseOpenHelper.getWritableDatabase();
+
+        secretDatabaseOpenHelper=new SecretDatabaseOpenHelper(this);
+        secretSqLiteDatabase=secretDatabaseOpenHelper.getWritableDatabase();
 KONKOUR_DAY_SHOWER=(TextView)findViewById(R.id.konkourDayShower);
 KONKOUR_DAY_SHOWER.animate().alpha(0f);
+KONKOUR_DAY_SHOWER.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+Intent intent=new Intent(MainActivity.this,SecretOutpot.class);
+onKonkourTextClickCounter++;
+if(onKonkourTextClickCounter==2){
+    //Here change the Alert dialog the that it accepts a number as an input and check whether it is right as a password
+    AlertDialog.Builder alertName = new AlertDialog.Builder(MainActivity.this);
+    final EditText editTextName1 = new EditText(MainActivity.this);
+    alertName.setTitle(" Enter your password");
+// titles can be used regardless of a custom layout or not
+    alertName.setView(editTextName1);
+    LinearLayout layoutName = new LinearLayout(MainActivity.this);
+    layoutName.setOrientation(LinearLayout.VERTICAL);
+    layoutName.addView(editTextName1); // displays the user input bar
+    alertName.setView(layoutName).setNegativeButton("yes", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+if(editTextName1.getText().toString().equals("8486")){
+  startActivity(intent);
 
-
+}
+        }
+    }).show();
+onKonkourTextClickCounter=0;
+}
+    }
+});
 
     }
     public void DayCounter(View view){

@@ -20,6 +20,7 @@ public class WritingActivity extends AppCompatActivity {
    public  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writing);
+        MainActivity.onKonkourTextClickCounter=0;
         setTitle("Add new Item");
 
 
