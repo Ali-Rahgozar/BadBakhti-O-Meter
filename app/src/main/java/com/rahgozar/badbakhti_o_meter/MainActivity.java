@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static SQLiteDatabase sqLiteDatabase;
     public static MyDatabaseOpenHelper myDatabaseOpenHelper;
     public static SQLiteDatabase secretSqLiteDatabase;
-    SecretDatabaseOpenHelper secretDatabaseOpenHelper;
+    public static SecretDatabaseOpenHelper secretDatabaseOpenHelper;
     public TextView KONKOUR_DAY_SHOWER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
